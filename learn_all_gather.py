@@ -4,7 +4,7 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser()
-
+parser.add_argument('--local_rank', default=0, type=int)
 args = parser.parse_args()
 
 # os.environ["MASTER_ADDR"] = "127.0.0.1"
@@ -20,4 +20,4 @@ tensor_list = list()
 tensor_list.append(temp_tensor)
 dist.all_gather_multigpu(out_tensor_list, tensor_list)
 # print(tensor_list)
-print("Out tensor {} on {}".format(out_tensor_list, args.local_rank)
+print("Out tensor {} on {}".format(out_tensor_list, args.local_rank))
