@@ -12,7 +12,7 @@ args = parser.parse_args()
 print ("World size  {}".format(os.environ["WORLD_SIZE"]))
 print ("Hello from local rank {}".format(args.local_rank))
 dist.init_process_group(backend="nccl", init_method="env://",
-                        world_size = 2, rank=args.local_rank)
+                        world_size = int(os.environ["WORLD_SIZE"]), rank=args.local_rank)
 # out_tensor_list = [[torch.FloatTensor([0]).cuda(args.local_rank),
                     # torch.FloatTensor([0]).cuda(args.local_rank)]]
 out_tensor_list = [[
