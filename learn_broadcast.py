@@ -8,7 +8,7 @@ parser.add_argument('--local-rank', default=0, type=int)
 parser.add_argument("--master-ip", type=str)
 parser.add_argument("--world-size", type=int)
 args = parser.parse_args()
-dist.init_process_group(backend="nccl", init_method=args.local_rank,
+dist.init_process_group(backend="nccl", init_method=args.master_ip,
                         world_size=args.world_size, rank=args.local_rank)
 
 test_tensor = torch.zeros((4,4), device='cuda:0')
